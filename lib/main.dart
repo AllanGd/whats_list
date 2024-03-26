@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
 import 'package:whats_list/view/home_page.dart';
+import 'package:whats_list/view/home_page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Whats List',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: SystemColors.primary),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const HomePage2(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
+import 'package:whats_list/widgets/my_appbar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,11 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("WHATS LIST",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
-        backgroundColor: SystemColors.primary,
-      ),
+      appBar: const MyAppBar(),
       body: Column(children: [
         Container(
           color: SystemColors.secondary,
