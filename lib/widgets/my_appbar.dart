@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
   const MyAppBar({
     super.key,
+    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text("WHATS LIST",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500)),
+      title: Text(title,
+          style: const TextStyle(
+              color: Colors.white, fontWeight: FontWeight.w500)),
       backgroundColor: SystemColors.primary,
       leading: Builder(
         builder: (context) {

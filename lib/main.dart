@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
-import 'package:whats_list/view/home_page.dart';
 import 'package:whats_list/view/home_page2.dart';
 
 void main() {

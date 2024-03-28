@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(),
+      appBar: const MyAppBar(title: "WHATS LIST"),
       body: Column(children: [
         Container(
           color: SystemColors.secondary,
