@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:whats_list/controller/clipboard_controller.dart';
 import 'package:whats_list/utils/system_colors.dart';
 import 'package:whats_list/widgets/my_appbar.dart';
 
-class HomePage2 extends StatelessWidget {
+class HomePage2 extends StatefulWidget {
   const HomePage2({super.key});
 
+  @override
+  State<HomePage2> createState() => _HomePage2State();
+}
+
+class _HomePage2State extends State<HomePage2> {
+  String clipboardText = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,23 +59,14 @@ class HomePage2 extends StatelessWidget {
                         contentPadding: EdgeInsets.only(left: 8)),
                   )),
                   IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.paste_rounded))
+                      onPressed: () async {
+                        clipboardText = await ClipboardController.colar();
+                        setState(() {});
+                      },
+                      icon: const Icon(Icons.paste_rounded))
                 ]),
-              )
-
-              // TextField(
-              //   decoration: InputDecoration(
-              //     hintText: "Cole a lista recebida pelo WhasApp",
-              //     hintStyle: const TextStyle(
-              //         color: SystemColors.textPrimary,
-              //         fontWeight: FontWeight.bold),
-              //     border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(50),
-              //         borderSide: BorderSide.none),
-              //     fillColor: Colors.white,
-              //     filled: true,
-              //   ),
-              // ),
+              ),
+              Text(clipboardText)
             ],
           ),
         ),
