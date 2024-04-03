@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
-import 'package:whats_list/view/home_page2.dart';
+import 'package:whats_list/view/initial_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: SystemColors.primary),
         useMaterial3: true,
       ),
-      home: const HomePage2(),
+      home: const InitialPage(),
     );
   }
 }

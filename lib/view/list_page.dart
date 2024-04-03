@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:whats_list/utils/system_colors.dart';
 import 'package:whats_list/widgets/my_appbar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class ListPage extends StatelessWidget {
+  const ListPage({super.key});
 
   @override
   Widget build(BuildContext context) {

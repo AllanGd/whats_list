@@ -3,14 +3,14 @@ import 'package:whats_list/controller/clipboard_controller.dart';
 import 'package:whats_list/utils/system_colors.dart';
 import 'package:whats_list/widgets/my_appbar.dart';
 
-class HomePage2 extends StatefulWidget {
-  const HomePage2({super.key});
+class InitialPage extends StatefulWidget {
+  const InitialPage({super.key});
 
   @override
-  State<HomePage2> createState() => _HomePage2State();
+  State<InitialPage> createState() => _InitialPageState();
 }
 
-class _HomePage2State extends State<HomePage2> {
+class _InitialPageState extends State<InitialPage> {
   String clipboardText = "";
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class _HomePage2State extends State<HomePage2> {
                 end: Alignment.bottomLeft,
                 colors: [
               SystemColors.primary,
-              SystemColors.primary.withOpacity(0.8),
+              SystemColors.primary.withOpacity(0.7),
             ])),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -60,13 +60,25 @@ class _HomePage2State extends State<HomePage2> {
                   )),
                   IconButton(
                       onPressed: () async {
-                        clipboardText = await ClipboardController.colar();
+                        clipboardText = await ClipboardController.paste();
                         setState(() {});
                       },
                       icon: const Icon(Icons.paste_rounded))
                 ]),
               ),
-              Text(clipboardText)
+              Text(clipboardText),
+              OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                      side: const BorderSide(color: Colors.white),
+                      backgroundColor: SystemColors.primary),
+                  onPressed: () {},
+                  child: const Text(
+                    "Listar",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16),
+                  ))
             ],
           ),
         ),
