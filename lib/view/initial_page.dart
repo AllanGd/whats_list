@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:whats_list/controller/clipboard_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:whats_list/utils/system_colors.dart';
+import 'package:whats_list/viewmodel/initial_page_viewmodel.dart';
 import 'package:whats_list/widgets/my_appbar.dart';
 
 class InitialPage extends StatefulWidget {
@@ -11,7 +12,6 @@ class InitialPage extends StatefulWidget {
 }
 
 class _InitialPageState extends State<InitialPage> {
-  String clipboardText = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,13 +60,18 @@ class _InitialPageState extends State<InitialPage> {
                   )),
                   IconButton(
                       onPressed: () async {
-                        clipboardText = await ClipboardController.paste();
-                        setState(() {});
+                        Provider.of<InitialPageViewModel>(context,
+                                listen: false)
+                            .paste();
                       },
                       icon: const Icon(Icons.paste_rounded))
                 ]),
               ),
-              Text(clipboardText),
+              Consumer<InitialPageViewModel>(
+                builder: (context, clipboard, child) {
+                  return Text(clipboard.clipBoardText);
+                },
+              ),
               OutlinedButton(
                   style: OutlinedButton.styleFrom(
                       side: const BorderSide(color: Colors.white),

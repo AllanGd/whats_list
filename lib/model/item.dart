@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:whats_list/model/item_status_enum.dart';
 
+enum ItemStatus {
+  adicionado,
+  comprado,
+  emFalta
+}
 class Item {
-  UniqueKey id = UniqueKey();
-  String nome;
-  ItemStatus status = ItemStatus.adicionado;
+  final UniqueKey _id = UniqueKey();
+  final String _name;
+  ItemStatus _status = ItemStatus.adicionado;
 
-  Item({required this.nome});
+  Item({required String name}) : _name = name;
+
+  set itemStatus(ItemStatus status) {
+    _status = status;
+  }
 }
