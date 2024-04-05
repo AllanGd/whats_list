@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:whats_list/model/item.dart';
 
 class InitialPageViewModel extends ChangeNotifier {
-  final List<Item> _itens = [];
+  List<Item> _itens = [];
   String _clipboardText = "";
 
   List<Item> get itens => _itens;
@@ -28,6 +28,14 @@ class InitialPageViewModel extends ChangeNotifier {
   void paste() async {
     final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
     _clipboardText = clipboardData?.text ?? "Texto não encontrado";
+    listConvert();
     notifyListeners();
+  }
+
+  void listConvert() {
+    _itens = _clipboardText
+        .split('\n')
+        .map((nomeItem) => Item(name: nomeItem))
+        .toList();
   }
 }
