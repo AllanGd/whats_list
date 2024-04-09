@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:whats_list/utils/system_colors.dart';
-import 'package:whats_list/viewmodel/initial_page_viewmodel.dart';
-import 'package:whats_list/widgets/my_appbar.dart';
+import 'package:whats_list/src/utils/system_colors.dart';
+import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
+import 'package:whats_list/src/widgets/my_appbar.dart';
 
 class InitialPage extends StatelessWidget {
   InitialPage({super.key});
@@ -68,7 +68,7 @@ class InitialPage extends StatelessWidget {
                       onPressed: () async {
                         Provider.of<InitialPageViewModel>(context,
                                 listen: false)
-                            .paste();
+                            .clipboardTextConvert();
                       },
                       icon: const Icon(Icons.paste_rounded))
                 ]),
@@ -84,7 +84,7 @@ class InitialPage extends StatelessWidget {
                           side: const BorderSide(color: Colors.white),
                           backgroundColor: SystemColors.primary),
                       onPressed: () async {
-                        itensList.paste();
+                        itensList.clipboardTextConvert();
                       },
                       icon: const Icon(Icons.paste, color: Colors.white),
                       label: const Text("Colar lista",
@@ -103,6 +103,23 @@ class InitialPage extends StatelessWidget {
                     );
                   }
                 },
+              ),
+              Visibility(
+                visible: !Provider.of<InitialPageViewModel>(context)
+                    .clipBoardTextIsNull(),
+                maintainAnimation: true,
+                maintainState: true,
+                maintainSize: true,
+                child: TextButton.icon(
+                    onPressed: () {
+                      Provider.of<InitialPageViewModel>(context, listen: false)
+                          .clear();
+                    },
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    label: const Text("Limpar",
+                        style: TextStyle(
+                          color: Colors.red,
+                        ))),
               ),
             ],
           ),

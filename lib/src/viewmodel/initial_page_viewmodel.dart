@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:whats_list/model/item.dart';
+import 'package:whats_list/src/model/item.dart';
+import 'package:whats_list/src/utils/clipboard.dart';
 
 class InitialPageViewModel extends ChangeNotifier {
   List<Item> _itens = [];
@@ -8,6 +8,10 @@ class InitialPageViewModel extends ChangeNotifier {
 
   List<Item> get itens => _itens;
   String get clipBoardText => _clipboardText;
+
+  bool clipBoardTextIsNull() {
+    return _clipboardText == "";
+  }
 
   void addItem(String itemName) {
     final item = Item(name: itemName);
@@ -25,9 +29,14 @@ class InitialPageViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void paste() async {
-    final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
-    _clipboardText = clipboardData?.text ?? "Texto não encontrado";
+  void clear() {
+    _clipboardText = "";
+    _itens.clear();
+    notifyListeners();
+  }
+
+  void clipboardTextConvert() async {
+    _clipboardText = await ClipboardService().paste();
     listConvert();
     notifyListeners();
   }

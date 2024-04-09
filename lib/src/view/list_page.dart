@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:whats_list/utils/system_colors.dart';
-import 'package:whats_list/widgets/my_appbar.dart';
+import 'package:whats_list/src/utils/system_colors.dart';
+import 'package:whats_list/src/widgets/my_appbar.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({super.key});
