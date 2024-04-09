@@ -3,10 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
 import 'package:whats_list/src/view/initial_page.dart';
 import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
+import 'package:whats_list/src/viewmodel/list_page_viewmodel.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => InitialPageViewModel(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => InitialPageViewModel()),
+      ChangeNotifierProvider(create: (context) => ListPageViewModel()),
+    ],
     child: const MyApp(),
   ));
 }

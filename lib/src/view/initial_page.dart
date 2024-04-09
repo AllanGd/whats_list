@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
+import 'package:whats_list/src/view/list_page.dart';
 import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
 import 'package:whats_list/src/widgets/my_appbar.dart';
 
@@ -95,7 +96,17 @@ class InitialPage extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                           side: const BorderSide(color: Colors.white),
                           backgroundColor: SystemColors.primary),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListPage(
+                                  listItem: Provider.of<InitialPageViewModel>(
+                                          context,
+                                          listen: false)
+                                      .itens),
+                            ));
+                      },
                       icon: const Icon(Icons.format_list_numbered,
                           color: Colors.white),
                       label: Text("Listar ${itensList.itens.length} itens",

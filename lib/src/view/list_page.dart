@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:whats_list/src/model/item.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
+import 'package:whats_list/src/viewmodel/list_page_viewmodel.dart';
 import 'package:whats_list/src/widgets/my_appbar.dart';
 
-class ListPage extends StatelessWidget {
-  const ListPage({super.key});
+class ListPage extends StatefulWidget {
+  const ListPage({super.key, required this.listItem});
+  final List<Item> listItem;
+
+  @override
+  State<ListPage> createState() => _ListPageState();
+}
+
+class _ListPageState extends State<ListPage> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ListPageViewModel>(context, listen: false)
+        .addListItens(widget.listItem);
+  }
 
   @override
   Widget build(BuildContext context) {
