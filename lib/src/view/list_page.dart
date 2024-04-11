@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:whats_list/src/model/item.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
 import 'package:whats_list/src/viewmodel/list_page_viewmodel.dart';
+import 'package:whats_list/src/widgets/AddDialog.dart';
 import 'package:whats_list/src/widgets/my_appbar.dart';
 
 class ListPage extends StatefulWidget {
@@ -23,40 +24,32 @@ class _ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Item> ItensList = Provider.of<ListPageViewModel>(context).listItens;
     return Scaffold(
       appBar: const MyAppBar(title: "WHATS LIST"),
       body: Column(children: [
-        Container(
-          color: SystemColors.secondary,
-          child: Padding(
-            padding: const EdgeInsets.all(13.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: "Cole a lista recebida pelo WhasApp",
-                      hintStyle:
-                          const TextStyle(color: SystemColors.textPrimary),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide.none),
-                      fillColor: Colors.white,
-                      filled: true,
-                    ),
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.paste, color: SystemColors.primary))
-              ],
-            ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: ItensList.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return ListTile(
+                contentPadding: const EdgeInsets.all(5),
+                leading: ItensList[index].getIconStatus(),
+                title: Text(ItensList[index].name),
+                onTap: () => Provider.of<ListPageViewModel>(context,
+                        listen: false)
+                    .updateItemStatus(ItensList[index], ItemStatus.carrinho),
+              );
+            },
           ),
-        ),
+        )
       ]),
       backgroundColor: SystemColors.secondary,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showAddDialog(context);
+        },
         child: const Icon(Icons.add),
       ),
     );

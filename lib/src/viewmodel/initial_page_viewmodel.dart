@@ -13,22 +13,6 @@ class InitialPageViewModel extends ChangeNotifier {
     return _clipboardText == "";
   }
 
-  void addItem(String itemName) {
-    final item = Item(name: itemName);
-    _itens.add(item);
-    notifyListeners();
-  }
-
-  void updateItemStatus(Item item, ItemStatus status) {
-    item.itemStatus = status;
-    notifyListeners();
-  }
-
-  void deleteItem(Item item) {
-    _itens.remove(item);
-    notifyListeners();
-  }
-
   void clear() {
     _clipboardText = "";
     _itens.clear();

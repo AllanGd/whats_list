@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 
-enum ItemStatus {
-  adicionado,
-  comprado,
-  emFalta
-}
+enum ItemStatus { listado, carrinho, emFalta }
+
 class Item {
   final UniqueKey _id = UniqueKey();
   final String _name;
-  ItemStatus _status = ItemStatus.adicionado;
+  ItemStatus _status = ItemStatus.listado;
 
   Item({required String name}) : _name = name;
 
+  String get name => _name;
+
   set itemStatus(ItemStatus status) {
     _status = status;
+  }
+
+  ItemStatus get status => _status;
+  Icon getIconStatus() {
+    switch (_status) {
+      case ItemStatus.listado:
+        return const Icon(Icons.sell);
+      case ItemStatus.carrinho:
+        return const Icon(Icons.add_shopping_cart);
+      case ItemStatus.emFalta:
+        return const Icon(Icons.error);
+    }
   }
 }
