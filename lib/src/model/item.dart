@@ -19,11 +19,20 @@ class Item {
   Icon getIconStatus() {
     switch (_status) {
       case ItemStatus.listado:
-        return const Icon(Icons.sell);
+        return const Icon(
+          Icons.list,
+          color: Colors.grey,
+        );
       case ItemStatus.carrinho:
-        return const Icon(Icons.add_shopping_cart);
+        return const Icon(
+          Icons.shopping_cart,
+          color: Colors.green,
+        );
       case ItemStatus.emFalta:
-        return const Icon(Icons.error);
+        return const Icon(
+          Icons.cancel,
+          color: Colors.red,
+        );
     }
   }
 }

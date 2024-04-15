@@ -17,12 +17,12 @@ class InitialPage extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBar(title: ""),
       drawer: const Drawer(child: Text("deu certo")),
-      // backgroundColor: SystemColors.primary,
       body: Container(
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomLeft,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
                 colors: [
               SystemColors.primary,
               SystemColors.primary.withOpacity(0.7),
@@ -35,6 +35,7 @@ class InitialPage extends StatelessWidget {
               const Text(
                 "WHATS LIST",
                 style: TextStyle(
+                    letterSpacing: 3,
                     color: Colors.white,
                     fontWeight: FontWeight.w900,
                     fontSize: 50,
@@ -43,95 +44,36 @@ class InitialPage extends StatelessWidget {
                           color: SystemColors.textPrimary, offset: Offset(2, 2))
                     ]),
               ),
-              const SizedBox(
-                height: 46,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: SystemColors.secondary,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Row(children: [
-                  Expanded(child: Consumer<InitialPageViewModel>(
-                    builder: (context, value, child) {
-                      return TextField(
-                        controller: _copyTextController,
-                        decoration: const InputDecoration(
-                            hintText: "Cole a lista recebida pelo WhatsApp",
-                            hintStyle: TextStyle(
-                                color: SystemColors.textSecondary,
-                                fontWeight: FontWeight.bold),
-                            border: InputBorder.none,
-                            contentPadding: EdgeInsets.only(left: 8)),
-                      );
-                    },
-                  )),
-                  IconButton(
-                      onPressed: () async {
-                        Provider.of<InitialPageViewModel>(context,
-                                listen: false)
-                            .clipboardTextConvert();
-                      },
-                      icon: const Icon(Icons.paste_rounded))
-                ]),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              Consumer<InitialPageViewModel>(
-                builder: (context, itensList, child) {
-                  if (itensList.itens.isEmpty) {
-                    return OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Colors.white),
-                          backgroundColor: SystemColors.primary),
-                      onPressed: () async {
-                        itensList.clipboardTextConvert();
-                      },
-                      icon: const Icon(Icons.paste, color: Colors.white),
-                      label: const Text("Colar lista",
-                          style: TextStyle(color: Colors.white)),
-                    );
-                  } else {
-                    return OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Colors.white),
-                          backgroundColor: SystemColors.primary),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ListPage(
-                                  listItem: Provider.of<InitialPageViewModel>(
-                                          context,
-                                          listen: false)
-                                      .itens),
-                            ));
-                      },
-                      icon: const Icon(Icons.format_list_numbered,
-                          color: Colors.white),
-                      label: Text("Listar ${itensList.itens.length} itens",
-                          style: const TextStyle(color: Colors.white)),
-                    );
-                  }
-                },
-              ),
-              Visibility(
-                visible: !Provider.of<InitialPageViewModel>(context)
-                    .clipBoardTextIsNull(),
-                maintainAnimation: true,
-                maintainState: true,
-                maintainSize: true,
-                child: TextButton.icon(
-                    onPressed: () {
-                      Provider.of<InitialPageViewModel>(context, listen: false)
-                          .clear();
-                    },
-                    icon: const Icon(Icons.delete, color: Colors.red),
-                    label: const Text("Limpar",
-                        style: TextStyle(
-                          color: Colors.red,
-                        ))),
-              ),
+              const SizedBox(height: 10),
+              ElevatedButton.icon(
+                  onPressed: () {
+                    Provider.of<InitialPageViewModel>(context, listen: false)
+                        .clipboardTextConvert();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ListPage(
+                              listItem: Provider.of<InitialPageViewModel>(
+                                      context,
+                                      listen: false)
+                                  .itens),
+                        ));
+                  },
+                  icon: const Icon(Icons.paste),
+                  label: const Text("Colar Lista")),
+              const SizedBox(height: 5),
+              FilledButton.icon(
+                  onPressed: () {
+                    Provider.of<InitialPageViewModel>(context, listen: false)
+                        .clipboardTextConvert();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ListPage(listItem: []),
+                        ));
+                  },
+                  icon: const Icon(Icons.shopping_cart),
+                  label: const Text("Lista Vazia"))
             ],
           ),
         ),

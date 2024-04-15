@@ -7,6 +7,7 @@ class ListPageViewModel extends ChangeNotifier {
   List<Item> get listItens => _itensList;
 
   void addListItens(List<Item> list) {
+    _itensList.clear();
     _itensList.addAll(list);
   }
 
@@ -15,6 +16,10 @@ class ListPageViewModel extends ChangeNotifier {
     _itensList.add(item);
     sortItesList();
     notifyListeners();
+  }
+
+  List<Item> itensListadosList() {
+    return listItens.where((element) => element.status==ItemStatus.listado).toList();
   }
 
   void updateItemStatus(Item item, ItemStatus status) {

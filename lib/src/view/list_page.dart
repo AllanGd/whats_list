@@ -24,27 +24,65 @@ class _ListPageState extends State<ListPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<Item> ItensList = Provider.of<ListPageViewModel>(context).listItens;
+    List<Item> itensList =
+        Provider.of<ListPageViewModel>(context).itensListadosList();
     return Scaffold(
       appBar: const MyAppBar(title: "WHATS LIST"),
-      body: Column(children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: ItensList.length,
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return ListTile(
-                contentPadding: const EdgeInsets.all(5),
-                leading: ItensList[index].getIconStatus(),
-                title: Text(ItensList[index].name),
-                onTap: () => Provider.of<ListPageViewModel>(context,
-                        listen: false)
-                    .updateItemStatus(ItensList[index], ItemStatus.carrinho),
-              );
-            },
-          ),
-        )
-      ]),
+      body: Container(
+        color: SystemColors.primary.withOpacity(0.1),
+        child: Column(children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: itensList.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  margin: const EdgeInsets.all(5),
+                  child: ListTile(
+                    tileColor: Colors.white,
+                    leading: itensList[index].getIconStatus(),
+                    // ignore: prefer_const_constructors
+                    trailing: PopupMenuButton(
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          child: const ListTile(
+                              leading: Icon(
+                                Icons.cancel,
+                                color: Colors.red,
+                              ),
+                              title: Text("Item em falta")),
+                          onTap: () => Provider.of<ListPageViewModel>(context,
+                                  listen: false)
+                              .updateItemStatus(
+                                  itensList[index], ItemStatus.emFalta),
+                        ),
+                        PopupMenuItem(
+                          child: const ListTile(
+                              leading: Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                              title: Text("Deletar Item")),
+                          onTap: () => Provider.of<ListPageViewModel>(context,
+                                  listen: false)
+                              .deleteItem(itensList[index]),
+                        )
+                      ],
+                    ),
+                    title: Text(itensList[index].name),
+                    onTap: () =>
+                        Provider.of<ListPageViewModel>(context, listen: false)
+                            .updateItemStatus(
+                                itensList[index], ItemStatus.carrinho),
+                  ),
+                );
+              },
+            ),
+          )
+        ]),
+      ),
       backgroundColor: SystemColors.secondary,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
