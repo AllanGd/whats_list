@@ -20,18 +20,18 @@ class Item {
     switch (_status) {
       case ItemStatus.listado:
         return const Icon(
-          Icons.list,
-          color: Colors.grey,
+          Icons.check_box_outline_blank,
+          // color: Colors.grey,
         );
       case ItemStatus.carrinho:
         return const Icon(
           Icons.shopping_cart,
-          color: Colors.green,
+          // color: Colors.green,
         );
       case ItemStatus.emFalta:
         return const Icon(
           Icons.cancel,
-          color: Colors.red,
+          // color: Colors.red,
         );
     }
   }
