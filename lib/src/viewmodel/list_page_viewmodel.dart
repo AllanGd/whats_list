@@ -19,11 +19,13 @@ class ListPageViewModel extends ChangeNotifier {
   }
 
   List<Item> itensListadosList() {
-    return listItens.where((element) => element.status==ItemStatus.listado).toList();
+    return listItens
+        .where((element) => element.status == ItemStatus.listado)
+        .toList();
   }
 
   void updateItemStatus(Item item, ItemStatus status) {
-    item.itemStatus = status;
+    item.updateStatus = status;
     sortItesList();
     notifyListeners();
   }

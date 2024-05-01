@@ -31,6 +31,8 @@ class _ListPageState extends State<ListPage> {
       body: Container(
         color: SystemColors.primary.withOpacity(0.1),
         child: Column(children: [
+          const Text("Texte"),
+          const Divider(),
           Expanded(
             child: ListView.builder(
               itemCount: itensList.length,

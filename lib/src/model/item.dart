@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 enum ItemStatus { listado, carrinho, emFalta }
 
 class Item {
-  final UniqueKey _id = UniqueKey();
+  final UniqueKey id = UniqueKey();
   final String _name;
   ItemStatus _status = ItemStatus.listado;
 
@@ -11,7 +11,7 @@ class Item {
 
   String get name => _name;
 
-  set itemStatus(ItemStatus status) {
+  set updateStatus(ItemStatus status) {
     _status = status;
   }
 
