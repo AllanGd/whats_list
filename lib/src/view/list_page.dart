@@ -27,12 +27,13 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext context) {
     List<Item> itensList = Provider.of<ListPageViewModel>(context).listItens;
     return Scaffold(
-      appBar: const MyAppBar(title: "WHATS LIST"),
+      appBar: MyAppBar(
+          title: "WHATS LIST",
+          createDate: Provider.of<ListPageViewModel>(context, listen: false)
+              .dateTime()),
       body: Container(
         color: SystemColors.primary.withOpacity(0.1),
         child: Column(children: [
-          const Text("Texte"),
-          const Divider(),
           Expanded(
             child: ListView.builder(
               itemCount: itensList.length,

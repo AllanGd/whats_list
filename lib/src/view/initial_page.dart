@@ -15,7 +15,7 @@ class InitialPage extends StatelessWidget {
     _copyTextController.text = copyText.clipBoardText;
 
     return Scaffold(
-      appBar: const MyAppBar(title: ""),
+      appBar: const MyAppBar(title: "", createDate: ""),
       drawer: const Drawer(child: Text("deu certo")),
       body: Container(
         width: MediaQuery.of(context).size.width,

@@ -5,7 +5,7 @@ import 'package:whats_list/src/view/initial_page.dart';
 import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
 import 'package:whats_list/src/viewmodel/list_page_viewmodel.dart';
 
-void main() {
+void main() async{
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => InitialPageViewModel()),

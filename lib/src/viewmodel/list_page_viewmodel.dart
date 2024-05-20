@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:whats_list/src/model/item.dart';
+import 'package:whats_list/src/model/item_list.dart';
 
 class ListPageViewModel extends ChangeNotifier {
-  final List<Item> _itensList = [];
+  final ItemList _itensList = ItemList();
 
-  List<Item> get listItens => _itensList;
+  List<Item> get listItens => _itensList.list;
+
+  String dateTime() {
+    return _itensList.createDate();
+  }
 
   void addListItens(List<Item> list) {
-    _itensList.clear();
-    _itensList.addAll(list);
+    _itensList.list.clear();
+    _itensList.list.addAll(list);
   }
 
   void addItem(String itemName) {
     final item = Item(name: itemName);
-    _itensList.add(item);
-    sortItesList();
+    _itensList.list.add(item);
+    sortItemList();
     notifyListeners();
   }
 
@@ -26,16 +31,16 @@ class ListPageViewModel extends ChangeNotifier {
 
   void updateItemStatus(Item item, ItemStatus status) {
     item.updateStatus = status;
-    sortItesList();
+    sortItemList();
     notifyListeners();
   }
 
   void deleteItem(Item item) {
-    _itensList.remove(item);
+    _itensList.list.remove(item);
     notifyListeners();
   }
 
-  void sortItesList() {
-    _itensList.sort((a, b) => a.status.index.compareTo(b.status.index));
+  void sortItemList() {
+    _itensList.list.sort((a, b) => a.status.index.compareTo(b.status.index));
   }
 }
