@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
+import 'package:whats_list/src/model/item_list.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
 import 'package:whats_list/src/view/initial_page.dart';
 import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
 import 'package:whats_list/src/viewmodel/list_page_viewmodel.dart';
 
-void main() async{
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(ItemListAdapter());
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => InitialPageViewModel()),
