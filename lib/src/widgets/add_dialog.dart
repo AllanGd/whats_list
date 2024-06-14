@@ -21,7 +21,7 @@ class CustomAddDialog extends StatelessWidget {
       actions: [
         FilledButton.tonal(
           style: const ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(SystemColors.primary),
+            backgroundColor: WidgetStatePropertyAll(SystemColors.primary),
           ),
           onPressed: () {
             context.read<ListPageViewModel>().addItem(itemNameController.text);
@@ -31,7 +31,7 @@ class CustomAddDialog extends StatelessWidget {
         ),
         FilledButton.tonal(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(Colors.red.shade200),
+            backgroundColor: WidgetStatePropertyAll(Colors.red.shade200),
           ),
           onPressed: () {
             Navigator.of(context).pop();

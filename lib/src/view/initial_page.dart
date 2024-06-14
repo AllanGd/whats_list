@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:whats_list/src/utils/system_colors.dart';
 import 'package:whats_list/src/view/list_page.dart';
 import 'package:whats_list/src/viewmodel/initial_page_viewmodel.dart';
+import 'package:whats_list/src/widgets/menu_drawer.dart';
 import 'package:whats_list/src/widgets/my_appbar.dart';
 
 class InitialPage extends StatelessWidget {
@@ -16,7 +17,7 @@ class InitialPage extends StatelessWidget {
 
     return Scaffold(
       appBar: const MyAppBar(title: "", createDate: ""),
-      drawer: const Drawer(child: Text("deu certo")),
+      drawer: MenuDrawer(),
       body: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
@@ -81,3 +82,5 @@ class InitialPage extends StatelessWidget {
     );
   }
 }
+
+
